@@ -86,7 +86,7 @@ public class Board {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Board board = (Board) o;
-        return Arrays.equals(matrix, board.matrix);
+        return Arrays.deepEquals(matrix, board.matrix);
     }
 
     @Override

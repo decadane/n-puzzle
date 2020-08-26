@@ -6,6 +6,7 @@ import ru.kmedhurs.n_puzzle.heuristic.strategies.Heuristic;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Node implements Comparable<Node> {
@@ -85,5 +86,18 @@ public class Node implements Comparable<Node> {
         return Arrays.stream(board.getMatrix()).map(
                 st -> Arrays.stream(st).map(str -> Integer.toString(str)
                 ).collect(Collectors.joining(" "))).collect(Collectors.joining("\n"));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return board.equals(node.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(board);
     }
 }
