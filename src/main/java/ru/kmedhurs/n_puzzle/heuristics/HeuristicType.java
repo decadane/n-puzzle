@@ -1,4 +1,4 @@
-package ru.kmedhurs.n_puzzle.heuristic;
+package ru.kmedhurs.n_puzzle.heuristics;
 
 public enum HeuristicType {
     HAM,

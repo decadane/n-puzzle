@@ -1,7 +1,6 @@
-package ru.kmedhurs.n_puzzle;
+package ru.kmedhurs.n_puzzle.model;
 
-import ru.kmedhurs.n_puzzle.exceptions.ImpossibleMoveException;
-import ru.kmedhurs.n_puzzle.heuristic.strategies.Heuristic;
+import ru.kmedhurs.n_puzzle.heuristics.strategies.Heuristic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +15,7 @@ public class Node implements Comparable<Node> {
     private final Heuristic heuristic;
     private final int g;
 
-    Node(Node parentNode, Board board, Heuristic heuristic, int g) {
+    public Node(Node parentNode, Board board, Heuristic heuristic, int g) {
         this.parentNode = parentNode;
         this.board = board;
         this.heuristic = heuristic;
@@ -36,36 +35,32 @@ public class Node implements Comparable<Node> {
         return parentNode;
     }
 
-    List<Node> expandNode() {
+    public List<Node> expandNode() {
         List<Node> result = new ArrayList<>();
-        try {
+        if (board.isUpPossible()) {
             Board upBoard = board.deepClone();
             upBoard.moveUp();
             result.add(new Node(this, upBoard, heuristic, g + 1));
-        } catch (ImpossibleMoveException e) {
         }
-        try {
+        if (board.isLeftPossible()) {
             Board leftBoard = board.deepClone();
             leftBoard.moveLeft();
             result.add(new Node(this, leftBoard, heuristic, g + 1));
-        } catch (ImpossibleMoveException e) {
         }
-        try {
+        if (board.isDownPossible()) {
             Board downBoard = board.deepClone();
             downBoard.moveDown();
             result.add(new Node(this, downBoard, heuristic, g + 1));
-        } catch (ImpossibleMoveException e) {
         }
-        try {
+        if (board.isRightPossible()) {
             Board rightBoard = board.deepClone();
             rightBoard.moveRight();
             result.add(new Node(this, rightBoard, heuristic, g + 1));
-        } catch (ImpossibleMoveException e) {
         }
         return result;
     }
 
-    boolean isSolved() {
+    public boolean isSolved() {
         boolean isSolved = true;
         for (int i = 0; i < board.getMatrix().length; i++) {
             for (int j = 0; j < board.getMatrix().length; j++) {
@@ -83,9 +78,10 @@ public class Node implements Comparable<Node> {
 
     @Override
     public String toString() {
-        return Arrays.stream(board.getMatrix()).map(
-                st -> Arrays.stream(st).map(str -> Integer.toString(str)
-                ).collect(Collectors.joining(" "))).collect(Collectors.joining("\n"));
+        return Arrays.stream(board.getMatrix())
+                .map(
+                        st -> Arrays.stream(st).mapToObj(Integer::toString).collect(Collectors.joining(" "))
+                ).collect(Collectors.joining("\n"));
     }
 
     @Override

@@ -1,9 +1,9 @@
-package ru.kmedhurs.n_puzzle.heuristic.strategies;
+package ru.kmedhurs.n_puzzle.heuristics.strategies;
 
 public class ManhattanDistanceHeuristic implements Heuristic {
 
     @Override
-    public int calculateHeuristic(Integer[][] currentState) {
+    public int calculateHeuristic(int[][] currentState) {
         int heuristic = 0;
         for (int y = 0; y < currentState.length; y++) {
             for (int x = 0; x < currentState.length; x++) {
