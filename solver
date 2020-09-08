@@ -1,4 +1,5 @@
 #!/bin/sh
+
 if ! [ -s ./Solver.jar ]; then
     echo "Solver.jar not found.  rebuild in this source directory by running './build'"
 else

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+mkdir output
+if [[ -f Solver.jar ]]; then
+    rm Solver.jar
+fi
+echo "Main-Class: ru.kmedhurs.n_puzzle.Main" > output/Manifest.txt
+javac -d output -cp src/main/java src/main/java/ru/kmedhurs/n_puzzle/*.java
+cd output
+jar cfm Solver.jar Manifest.txt .
+mv Solver.jar ../Solver.jar
+cd ..
+rm -rf output
+echo "Build completed"
