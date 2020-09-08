@@ -4,7 +4,7 @@ import ru.kmedhurs.n_puzzle.exceptions.InputErrorException;
 import ru.kmedhurs.n_puzzle.heuristics.strategies.HammingDistanceHeuristic;
 import ru.kmedhurs.n_puzzle.heuristics.strategies.Heuristic;
 import ru.kmedhurs.n_puzzle.heuristics.strategies.ManhattanDistanceHeuristic;
-import ru.kmedhurs.n_puzzle.heuristics.strategies.ManhattanDistanceWithInterferenceHeuristic;
+import ru.kmedhurs.n_puzzle.heuristics.strategies.UninformedHeuristic;
 
 import java.util.Arrays;
 
@@ -19,8 +19,8 @@ public class HeuristicFactory {
             switch (heuristicType) {
                 case HAM:
                     return new HammingDistanceHeuristic();
-                case INT:
-                    return new ManhattanDistanceWithInterferenceHeuristic();
+                case UNI:
+                    return new UninformedHeuristic();
                 case MAN:
                     return new ManhattanDistanceHeuristic();
             }

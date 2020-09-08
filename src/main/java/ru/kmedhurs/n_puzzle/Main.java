@@ -35,7 +35,7 @@ public class Main {
             resultPrinter.printResult(finishedNode);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Usage: [HAM | MAN | INT] [file path]");
+            System.out.println("Usage: [HAM | MAN | UNI] [file path]");
         }
     }
 }
