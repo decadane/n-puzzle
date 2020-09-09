@@ -39,7 +39,7 @@ public class SolvingChecker {
             else
                 return parity % 2 != 0;
         } else {
-            return parity % 2 == 0;
+            return parity % 2 != 0;
         }
     }
 

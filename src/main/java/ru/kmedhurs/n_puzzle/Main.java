@@ -33,7 +33,9 @@ public class Main {
             Node finishedNode = puzzleSolver.solvePuzzle(statisticManager);
             ResultPrinter resultPrinter = new ResultPrinter(statisticManager);
             resultPrinter.printResult(finishedNode);
-        } catch (Exception e) {
+        } catch (OutOfMemoryError e) {
+            System.out.println("Sorry, we can't resolve this :(");
+        } catch (Throwable e) {
             System.out.println(e.getMessage());
             System.out.println("Usage: [HAM | MAN | UNI] [file path]");
         }

@@ -3,6 +3,7 @@ package ru.kmedhurs.n_puzzle;
 import ru.kmedhurs.n_puzzle.heuristics.strategies.Heuristic;
 import ru.kmedhurs.n_puzzle.model.Board;
 import ru.kmedhurs.n_puzzle.model.Node;
+import ru.kmedhurs.n_puzzle.utils.SnailHelper;
 import ru.kmedhurs.n_puzzle.utils.StatisticManager;
 
 import java.util.*;
@@ -13,7 +14,8 @@ class PuzzleSolver {
     private final Set<Node> closedList = new HashSet<>();
 
     PuzzleSolver(int[][] startMatrix, Heuristic heuristic) {
-        openList.add(new Node(null, new Board(startMatrix), heuristic, 0));
+        SnailHelper snailHelper = new SnailHelper();
+        openList.add(new Node(null, new Board(startMatrix), heuristic, 0, snailHelper));
     }
 
     Node solvePuzzle(StatisticManager statisticManager) {
