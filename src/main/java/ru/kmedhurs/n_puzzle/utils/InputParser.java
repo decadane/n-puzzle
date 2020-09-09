@@ -17,7 +17,7 @@ public class InputParser {
         int[][] matrix;
         try {
             List<String> inputLines = Files.readAllLines(path).stream().filter(str -> !str.startsWith("#")).collect(Collectors.toList());
-            int size = getMatrixSize(inputLines.get(0));
+            int size = getMatrixSize(inputLines.get(0).split("#")[0].trim());
             matrix = new int[size][size];
             for (int i = 1; i <= inputLines.size() - 1; i++) {
                 initMatrixRow(inputLines.get(i), matrix, i - 1);
@@ -29,6 +29,8 @@ public class InputParser {
     }
 
     private int getMatrixSize(String firstString) throws InputErrorException {
+        if (!firstString.matches("\\d+"))
+            throw new InputErrorException("ERROR: can not process matrix size");
         int size = Integer.parseInt(firstString.trim());
         if (size < 1)
             throw new InputErrorException("ERROR: matrix size " + size + " smaller then minimum value");
